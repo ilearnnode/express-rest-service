@@ -20,7 +20,7 @@ const update = (id, board) => {
 };
 
 const remove = id => {
-  const index = boards.find(b => b.id === id);
+  const index = boards.findIndex(b => b.id === id);
   boards.splice(index, 1);
 };
 

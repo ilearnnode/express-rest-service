@@ -17,10 +17,8 @@ const update = (id, data) => {
 };
 
 const remove = async id => {
-  const userTasks = await tasksService.getAllByUser(id);
+  const userTasks = await tasksService.getByUser(id);
 
-  console.log('unassign user tasks');
-  console.log(userTasks);
   for (let i = 0; i < userTasks.length; i++) {
     const userTask = userTasks[i];
     await tasksService.update(userTask.id, { ...userTask, userId: null });

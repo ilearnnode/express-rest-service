@@ -20,7 +20,7 @@ const update = async (id, task) => {
 };
 
 const remove = async id => {
-  const index = tasks.find(t => t.id === id);
+  const index = tasks.findIndex(t => t.id === id);
   tasks.splice(index, 1);
 };
 

@@ -10,6 +10,11 @@ router.route('/').get(async (req, res) => {
 router.route('/:id').get(async (req, res) => {
   const { id = null } = req.params;
   const user = await usersService.get(id);
+  if (!user) {
+    res.sendStatus(404);
+    return;
+  }
+
   res.json(User.toResponse(user));
 });
 

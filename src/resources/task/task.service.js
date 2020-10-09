@@ -6,11 +6,8 @@ const getAll = async boardId => {
   return tasks.filter(t => t.boardId === boardId);
 };
 
-const getAllByUser = async userId => {
-  console.log('getAllByUser');
-
+const getByUser = async userId => {
   const tasks = await tasksRepo.getAll();
-  console.log('all', tasks);
   return tasks.filter(t => t.userId === userId);
 };
 
@@ -18,7 +15,6 @@ const get = id => tasksRepo.get(id);
 
 const create = (boardId, data) => {
   const task = new Task({ ...data, boardId });
-  console.log('createTask', task);
   return tasksRepo.create(task);
 };
 
@@ -29,4 +25,4 @@ const update = (id, data) => {
 
 const remove = id => tasksRepo.remove(id);
 
-module.exports = { getAll, getAllByUser, get, create, update, remove };
+module.exports = { getAll, getByUser, get, create, update, remove };
