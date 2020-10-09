@@ -1,34 +1,34 @@
 const router = require('express').Router();
-const User = require('./user.model');
-const usersService = require('./user.service');
+const boardsService = require('./board.service');
 
 router.route('/').get(async (req, res) => {
-  const users = await usersService.getAll();
-  res.json(users.map(User.toResponse));
+  const boards = await boardsService.getAll();
+  const result = boards;
+  res.json(result);
 });
 
 router.route('/:id').get(async (req, res) => {
   const { id = null } = req.params;
-  const user = await usersService.get(id);
-  res.json(User.toResponse(user));
+  const board = await boardsService.get(id);
+  res.json(board);
 });
 
 router.route('/').post(async (req, res) => {
   const { body = null } = req;
-  const user = await usersService.create(body);
-  res.json(User.toResponse(user));
+  const board = await boardsService.create(body);
+  res.json(board);
 });
 
 router.route('/:id').put(async (req, res) => {
   const { id = null } = req.params;
   const { body = null } = req;
-  const user = await usersService.update(id, body);
-  res.json(User.toResponse(user));
+  const board = await boardsService.update(id, body);
+  res.json(board);
 });
 
 router.route('/:id').delete(async (req, res) => {
   const { id = null } = req.params;
-  await usersService.remove(id);
+  await boardsService.remove(id);
   res.sendStatus(200);
 });
 
